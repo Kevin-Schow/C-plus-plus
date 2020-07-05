@@ -1,7 +1,6 @@
-// Project 2 AverageRainfall.cpp 
+// AverageRainfall.cpp 
 // Read from a file the starting month name, ending month name, monthly rainfall for each month
 //sum the rainfall amounts and report total rainfall for the period
-// Kevin Schow
 
 #include <iostream>         // Needed to do C++ I/O
 #include <string>           // Needed to use strings
