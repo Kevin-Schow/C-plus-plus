@@ -1,0 +1,76 @@
+// Project 2 RandomNumbers.cpp 
+// Generate a random number 1-100, a user guesses and is told if their
+// number is higher or lower than their guess until they guess correct
+
+#include <iostream>         // Needed to do C++ I/O
+#include <string>           // Needed to use strings
+#include <iomanip>			// used for formatting text
+#include <stdlib.h>         // srand, rand
+#include <time.h>           // time
+
+using namespace std;
+
+int main()
+{
+    // define all variables needed
+    string userGuess_str = "";
+    int userGuess = 0;
+    int guessCounter = 0;
+    int correctNumber = 0;
+    bool validNumbers = false;
+    bool correctGuess = false;
+
+    // generate a random number 1-100 with a random seed
+    srand(time(NULL));
+    correctNumber = rand() % 100 + 1;     // range 1 - 100
+
+    cout << "Guess a number 1 - 100:\n";
+
+    do
+    {
+        do
+        {
+            // ask user to input their guess
+            getline(cin, userGuess_str);
+
+            //increment counter
+            guessCounter++;
+
+            // check to see if user response is a number
+            for (int i = 0; i < userGuess_str.length(); i++)
+            {
+                if (!isdigit(userGuess_str[i]))
+                {
+                    cout << "Invalid response. Please enter a valid number 1 - 100: ";
+                    validNumbers = false;
+                    break;
+                }
+                else
+                {
+                    userGuess = stoi(userGuess_str);
+                    validNumbers = true;
+                }
+            }
+        } while (validNumbers == false);
+
+        //tell user if their guess is high or low
+        if (userGuess < correctNumber)
+        {
+            cout << userGuess << " is too low. Try a larger number.\n";
+        }
+        else if (userGuess > correctNumber)
+        {
+            cout << userGuess << " is too high. Try a smaller number.\n";
+        }
+        else if (userGuess == correctNumber)
+        {
+                correctGuess = true;
+        }
+    } while (correctGuess == false);
+
+    //display user guesses and win message
+    cout << "Congratulations. You figured out my number.\n";
+    cout << "My number was " << correctNumber << ". You got it in " << guessCounter << " guesses.";
+
+    return 0;
+}
