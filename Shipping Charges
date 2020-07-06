@@ -1,0 +1,123 @@
+// ShippingCharges.cpp 
+// Calculates the shipping charge to ship a package based on the rate and distance
+
+#include <iostream>         // Needed to do C++ I/O
+#include <string>           // Needed to use strings
+#include <iomanip>			// used for formatting text
+
+using namespace std;
+
+double calculateCharge(double a, double b)
+{
+    double charge = 0.0;
+
+    charge = a * b;
+    return charge;
+}
+
+int main()
+{
+    // define all variables needed
+    string packageWeight_str;
+    string packageDistance_str;
+
+    double packageWeight;
+    double packageDistance;
+    double packageRate{};
+    double shippingCost;
+
+    bool validNumberWeight = false;
+    bool validNumberDistance = false;
+
+    double const rate1 = 0.0062;    //per mile at 3.10
+    double const rate2 = 0.0084;    //per mile at 4.20
+    double const rate3 = 0.0106;    //per mile at 5.30
+    double const rate4 = 0.0128;    //per mile at 6.40
+
+    cout << "===================================================================\n";
+    cout << "Fast Freight Shipping Company\n";
+    cout << "Package Shipping Charges Calculator\n";
+    cout << "===================================================================\n\n";
+
+    do
+    {
+    
+        do
+        {
+            // ask user to input weight of package
+            cout << "Enter package weight in kg (or 0 to exit):\n";
+            getline(cin, packageWeight_str);
+
+
+            // check to see if weight entered is a number
+            for (int i = 0; i < packageWeight_str.length(); i++)
+            {
+                if (!isdigit(packageWeight_str[i]) && (!ispunct(packageWeight_str[i])))
+                {
+                    cout << "Invalid response.\n";
+                    validNumberWeight = false;
+                    break;
+                }
+                else
+                {
+                    packageWeight = stoi(packageWeight_str);
+                    validNumberWeight = true;
+                }
+            }
+        } while (validNumberWeight == false);
+
+        if (packageWeight > 0)
+        {
+            do
+            {
+                //  ask user to input distance to be shipped
+
+                cout << "Enter distance to be shipped in miles:\n";
+                getline(cin, packageDistance_str);
+
+                // check to see if distance entered is a number
+                for (int i = 0; i < packageDistance_str.length(); i++)
+                {
+                    if (!isdigit(packageDistance_str[i]) && (!ispunct(packageDistance_str[i])))
+                    {
+                        cout << "Invalid response.\n";
+                        validNumberDistance = false;
+                        break;
+                    }
+                    else
+                    {
+                        packageDistance = stoi(packageDistance_str);
+                        validNumberDistance = true;
+                    }
+                }
+            } while (validNumberDistance == false);
+
+
+            // Determine the rate based on weight
+            if (packageWeight <= 2)
+            {
+                packageRate = rate1;
+            }
+            else if (packageWeight > 2.0 && packageWeight <= 6.0)
+            {
+                packageRate = rate2;
+            }
+            else if (packageWeight < 6.0 && packageWeight <= 10.0)
+            {
+                packageRate = rate3;
+            }
+            else if (packageWeight > 10.0)
+            {
+                packageRate = rate4;
+            }
+
+            // Calculate then display shipping cost
+            shippingCost = calculateCharge(packageRate, packageDistance);
+            cout << fixed << setprecision(2) << "Shipping Cost: $" << shippingCost << "\n----------------------\n";
+        }         
+    } while (!(packageWeight == 0));
+
+
+
+    return 0;
+}
