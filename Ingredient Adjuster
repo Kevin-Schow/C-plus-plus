@@ -1,0 +1,48 @@
+// IngredientAdjuster.cpp
+// This program outputs the amount of ingredients needed for baking an amount of cookies
+
+#include <iostream>         // Needed to do C++ I/O
+#include <string>           // Needed by some compilers to use strings
+#include<iomanip>           // Needed for manipulators
+
+using namespace std;
+
+int main()
+{
+    // define all needed data, ingredients are 5/48, 1/48, 75/48 for 48 cookie recipe
+    double amountCookies = 0.0;
+    double IngredientSugar = 0.1041, IngredientButter = 0.0208, IngredientFlour = 1.5625;
+
+    string amountCookies_s;
+
+    // check if amount of cookies is a number
+    bool is_number = true;
+        do {
+            // ask the user how many cookies they want to make
+            cout << "How many cookies would you like to bake?: ";
+            cin >> amountCookies;
+
+                if (amountCookies > 0) {
+
+                    //calculate the amount of ingredients needed for number of cookies
+
+                    IngredientSugar = IngredientSugar * amountCookies;
+                    IngredientButter = IngredientButter * amountCookies;
+                    IngredientFlour = IngredientFlour * amountCookies;
+
+                    // output the amount of needed ingredients
+
+                    cout << "To make " << amountCookies << " cookies, you should use " << setprecision(3) << IngredientSugar << " cups of sugar, " << setprecision(3) << IngredientButter << " cups of butter, and " << setprecision(4) << IngredientFlour << " cups of flour.";
+                    
+                }
+                else{
+                    cout << "Invalid response, please enter a number. ";
+                    is_number = false;
+                    break;
+                }
+
+        } while (is_number == false);
+
+
+    return 0;
+}
