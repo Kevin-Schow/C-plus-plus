@@ -1,0 +1,44 @@
+//Lab 3 RomanNumerals.cpp
+//This program changes numbers 1-10 into roman numerals
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	int inputNum;
+
+	cout << "Please Enter a Number 1-10" << endl;
+
+	cin >> inputNum;
+
+	if (inputNum >= 1 && inputNum <= 10);
+
+	switch (inputNum) {
+	case 1: cout << "I";
+		break;
+	case 2: cout << "II";
+		break;
+	case 3: cout << "III";
+		break;
+	case 4: cout << "IV";
+		break;
+	case 5: cout << "V";
+		break;
+	case 6: cout << "VI";
+		break;
+	case 7: cout << "VII";
+		break;
+	case 8: cout << "VIII";
+		break;
+	case 9: cout << "IX";
+		break;
+	case 10: cout << "X";
+		break;
+	default: cout << "enter a valid number" << endl;
+	}
+
+	return 0;
+}
