@@ -1,0 +1,70 @@
+// WidgetFactory.cpp 
+// using a class, calculate widgets produces per hur, how many days it will take to produce any number
+// in two 8 hour shifts per day
+
+#include <iostream>         // Needed to do C++ I/O
+#include <string>           // Needed to use strings
+#include <iomanip>			// used for formatting text
+
+using namespace std;
+
+class widget {
+private:
+    double shiftLength = 0.0;
+    double shiftsPerDay = 0.0;
+    double widgetsPerHour = 0.0;
+    double daysToProduce = 0.0;
+
+public:
+    string numWidgets_str;
+    double numberOfWidgets;
+
+    widget(double sL = 8.0, double sPD = 2.0, double wPH = 10.0) {
+        shiftLength = sL, shiftsPerDay = sPD, widgetsPerHour = wPH;
+
+        // calculate widget days to produce
+        daysToProduce = numberOfWidgets / (8.0 * shiftsPerDay * widgetsPerHour);
+
+        // Tell user how long it will take
+        cout << "\nIt will take " << daysToProduce << " days to produce " << numberOfWidgets << " widgets.";
+        cout << "\n=============================================\n";
+    }
+};
+
+int main()
+{
+
+    bool validNumbers = false;
+    string numWidgets_str;
+    double numWidgets;
+
+    do
+    {
+        // display information to user
+        cout << "\n=============================================\n";
+        cout << "This program will calculate widget production time.\n";
+        cout << "How Many widgets are on order? ";
+        getline(cin, numWidgets_str);
+
+        // check to see if user response is a number
+        for (int i = 0; i < numWidgets_str.length(); i++)
+        {
+            if (!isdigit(numWidgets_str[i]))
+            {
+                cout << "Invalid response. Please enter a valid number: ";
+                validNumbers = false;
+                break;
+            }
+            else
+            {
+                numWidgets = stod(numWidgets_str);
+                validNumbers = true;
+            }
+        }
+    } while (validNumbers == false);
+
+    //create an object of the widget tracker
+    widget widgetObj1{ widgetObj1.numberOfWidgets = numWidgets };
+
+    return 0;
+}
