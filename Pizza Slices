@@ -1,0 +1,56 @@
+//// Pizza_Slices.cpp
+// This program calculates the number of slices a pizza can be divided into
+
+#include <iostream>         // Needed to do C++ I/O
+#include <string>           // Needed to use strings
+#include<iomanip>			// provides parametric manipulators
+
+using namespace std;
+
+int main()
+{
+	double pizza_Radius = 0;
+	double pizza_Diameter = 0;
+	double pizza_Area = 0;
+    double pizza_Square = 0;
+    double pizza_Slices = 0;
+    const int PI = 3.14;
+
+		//Ask the user for diameter of the pizza
+        // Check that the user entered a number
+    bool is_number;
+
+    do {
+        is_number = true;
+
+        // ask the user how many cookies they want to make
+        cout << "Please enter the diameter of the pizza: ";
+        cin >> pizza_Diameter;
+
+        if (pizza_Diameter > 0)
+        {
+                //divide diameter by 2
+                pizza_Radius = (pizza_Diameter / 2);
+
+                //calculate radius squared times pi
+                pizza_Square = pow(pizza_Radius, 2);
+                pizza_Area = (PI * pizza_Square);
+
+                //calculate number of slices if each slice > 14.125
+                pizza_Slices = (pizza_Area / 14.125);
+
+                //return to user number of slices
+                cout << "Number of slices: " << std::llround(pizza_Slices);
+        }
+        else
+        {
+                cout << "Invalid response, please enter a number.";
+                is_number == false;
+                    break;
+        }
+
+    } while (is_number == false);
+
+	return 0;
+}
+
