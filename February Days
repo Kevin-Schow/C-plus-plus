@@ -1,0 +1,52 @@
+//// February_Days.cpp
+// This program calculates if it is a leap year for feb 29th
+
+#include <iostream>         // Needed to do C++ I/O
+#include <string>           // Needed to use strings
+#include<iomanip>			// provides parametric manipulators
+
+using namespace std;
+
+int main()
+{
+
+    int year;
+
+    // Ask the user to input a year
+    cout << "Please enter a year: ";
+    cin >> year;
+
+    //TEST TO SEE IF IT WORKS
+    // cout << (year % 4) << "  " << (year % 100) << "  " << (year % 400);
+
+    // Determine if the year is a leap year
+    // if divisible by BOTH 100 and 400, or if divisible by 4 but not 100
+    // Output if the year has 29 days in feb
+
+    if (year > 0)
+    {
+        if (year % 100 == 0)
+        {
+            if (year % 400 == 0)
+            {
+                cout << "In " << year << " February has 29 days. \n(divisible by both 100 and 400)";
+            }
+        }
+        else if (year % 4 == 0)
+        {
+            cout << "In " << year << " February has 29 days. \n(divisible by 4)";
+        }
+
+        else
+        {
+            cout << "In " << year << " February has 28 days.";
+        }
+    }
+    else
+    {
+        cout << "Please enter a valid year.";
+    }
+       
+    return 0;
+}
+
