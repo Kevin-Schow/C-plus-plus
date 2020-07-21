@@ -1,0 +1,65 @@
+// AverageRainfall.cpp 
+// Read from a file the starting month name, ending month name, monthly rainfall for each month
+//sum the rainfall amounts and report total rainfall for the period
+
+#include <iostream>         // Needed to do C++ I/O
+#include <string>           // Needed to use strings
+#include <iomanip>			// used for formatting text
+#include <fstream>          // read and write files
+
+using namespace std;
+
+int main()
+{
+    // define all variables needed
+    string startMonth;
+    string endMonth;
+    string line;
+
+    float rainfallTotal = 0;
+    float rainfallAverage = 0;
+    float monthlyRainfall = 0;
+    int monthCounter = 0;
+
+    // import the file to be read
+    // collect the data from the file
+
+    ifstream inFile("Rainfall.txt");
+    if (inFile.is_open())
+    {
+        while (getline(inFile, line))
+        {
+            cout << line << '\n';
+            if (monthCounter = 0)
+            {
+                string startMonth = line;
+            }
+            else if (monthCounter = 1)
+            {
+                string endMonth = line;
+            }
+            else if (monthCounter >= 2)
+            {
+                monthlyRainfall = stof(line);
+                rainfallTotal = rainfallTotal + monthlyRainfall;
+            }
+            
+            monthCounter++;
+        }
+        inFile.close();
+    }
+    else cout << "Unable to open file";
+
+    //calculate average
+    monthCounter -= 2;
+    rainfallAverage = rainfallTotal / monthCounter;
+
+    //display all data
+    cout << "\n=========================================================\n";
+    cout << "During the months of " << startMonth << " - " << endMonth;
+    cout << "\nthe total rainfall was " << rainfallTotal << " inches and\n";
+    cout << "the average monthly rainfall was " << rainfallAverage << " inches.";
+    cout << "\n=========================================================\n";
+
+    return 0;
+}
